@@ -3,7 +3,7 @@ export default function Admin(){
     return(
         <div>
 
-            <h1>This is admin page</h1>
+            <h1>This is admin pages</h1>
 
         </div>
     );
