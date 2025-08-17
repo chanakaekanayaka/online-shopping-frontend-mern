@@ -3,6 +3,8 @@ import { FaBox } from "react-icons/fa";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { FaUserCog } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
+import ProductsAdmin from "./Admin/productsAdmin";
+import AddnewProductAdminPage from "./Admin/newProductAdminPage";
 
 export default function Admin(){
 
@@ -21,7 +23,8 @@ export default function Admin(){
             <div className="h-full w-[calc(100%-300px)] bg-amber-900">
             <Routes > 
                 <Route path="/" element={<h1>Admin home</h1>}></Route>
-                <Route path="/products" element={<h1>Products details</h1>}/>
+                <Route path="/products" element={<ProductsAdmin></ProductsAdmin>}/>
+                <Route path="/addNewProduct" element={<AddnewProductAdminPage></AddnewProductAdminPage>}></Route>
                 <Route path="/orders" element={<h1>Order details </h1>}/>
             </Routes>
             </div>
