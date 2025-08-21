@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import uploadfile from '../../utils/mediaUpload';
 
 const AddnewProductAdminPage = () => { 
 
@@ -10,16 +11,31 @@ const [productName,setproductName] = useState("");
 const [altNames,setaltNames] = useState("");
 const [labelledPrice,setlabelledPrice] = useState("");
 const [price,setprice] = useState("");
-const [image ,setimage ] = useState("");
+const [image ,setimage ] = useState([]);   
 const [description ,setdescription ] = useState("");
 const [stock,setstock] = useState("");
 const [isAvailable,setisAvailable] = useState("");
 const [category ,setcategory] = useState("");
 const navigate = useNavigate();
 
-function addProduct(){
+
+    
+
+
+async function addProduct(){
 
     const AltnameInarry = altNames.split(",")
+
+    const promiseArray = []
+
+    for(let i=0; i<image.length ; i++){
+
+        const promise = uploadfile(image[i])
+        promiseArray[i] = promise
+    } 
+
+    const responses = await Promise.all(promiseArray)
+    console.log(responses)
     
     const productData = {
 
@@ -29,7 +45,7 @@ function addProduct(){
         altNames : AltnameInarry,
         labelledPrice : labelledPrice,
         price : price,
-        image : image,
+        image : responses,
         description : description,
         stock : stock,
         isAvailable : isAvailable,
@@ -66,7 +82,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
 
 ).catch(
     (error)=>{
-        console.error("Error adding product :"+error)
+        console.error("Error adding product :",error)
         toast.error("Product added unsucessfully..")
 
     }
@@ -163,9 +179,10 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Image Upload */}
         <div className='w-full flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Product Image</label>
-          <input type='file' accept='image/*' onChange={
-            (image)=>{setimage(image.target.value)}
-          }
+          <input multiple
+          
+                 type="file"  
+                onChange={(e) => setimage(e.target.files)}
             className='border rounded-lg px-2 py-1 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500'/>
         </div>
 
