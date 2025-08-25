@@ -1,22 +1,26 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import uploadfile from '../../utils/mediaUpload';
 
-export default function AddnewProductAdminPage(){ 
+export default function UpdateProduct(){ 
 
-const [productID,setproductID] = useState("");
-const [productName,setproductName] = useState("");
-const [altNames,setaltNames] = useState("");
-const [labelledPrice,setlabelledPrice] = useState("");
-const [price,setprice] = useState("");
+const location = useLocation();
+
+console.log(location)
+   
+const [productID,setproductID] = useState(location.state.productID);
+const [productName,setproductName] = useState(location.state.productName);
+const [altNames,setaltNames] = useState(location.state.altNames.join(","));
+const [labelledPrice,setlabelledPrice] = useState(location.state.labelledPrice);
+const [price,setprice] = useState(location.state.price);
 const [image ,setimage ] = useState([]);   
-const [description ,setdescription ] = useState("");
-const [stock,setstock] = useState("");
-const [isAvailable,setisAvailable] = useState("");
-const [category ,setcategory] = useState("");
-const navigate = useNavigate();
+const [description ,setdescription ] = useState(location.state.description);
+const [stock,setstock] = useState(location.state.stock);
+const [isAvailable,setisAvailable] = useState(location.state.isAvailable);
+const [category ,setcategory] = useState(location.state.category);
+const navigate = useNavigate(location.state.navigate);
 
 
     
@@ -53,6 +57,10 @@ async function addProduct(){
     }
     console.log(productData)
 
+    if(responses.length == 0){
+        productData.image = location.state.image;
+    }
+
 
     const token =localStorage.getItem("token")
 
@@ -61,7 +69,7 @@ if(token == null){
     return 
 }
 
-axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
+axios.put(import.meta.env.VITE_BACKEND_URL +"/api/products/"+productID,productData,
     {
         headers :{
                 Authorization: "Bearer "+token
@@ -73,17 +81,17 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
     
     (response)=>{
 
-        console.log("Product added sucessfull..")
+        console.log("Product Update sucessfull..")
         console.log(response.data)
-        toast.success("Product added sucessfully..")
+        toast.success("Product Update sucessfully..")
         navigate("/admin/products")
 
     }
 
 ).catch(
     (error)=>{
-        console.error("Error adding product :",error)
-        toast.error("Product added unsucessfully..")
+        console.error("Error Update product :",error)
+        toast.error("Product Update unsucessfully..")
 
     }
 )
@@ -100,7 +108,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Product ID */}
         <div className='w-[45%] flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Product ID</label>
-          <input type='text' placeholder='Enter Product ID' onChange={(productID)=>{
+          <input type='text' disabled placeholder='Enter Product ID'  value={productID} onChange={(productID)=>{
             setproductID(productID.target.value)
 
           }}
@@ -110,7 +118,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Product Name */}
         <div className='w-[45%] flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Product Name</label>
-          <input type='text' placeholder='Enter Product Name' onChange={
+          <input type='text' placeholder='Enter Product Name' value={productName} onChange={
             (productName)=>{
                 setproductName(productName.target.value)
 
@@ -158,7 +166,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Availability */}
         <div className='w-[45%] flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Available</label>
-          <select className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'  onChange={
+          <select className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500' value={isAvailable}  onChange={
             (isAvailable)=>{setisAvailable(isAvailable.target.value)}
           }
             >
@@ -170,7 +178,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Category */}
         <div className='w-[45%] flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Category</label>
-          <input type='text' placeholder='Enter category' onChange={
+          <input type='text' placeholder='Enter category' value={category} onChange={
             (category)=>{setcategory(category.target.value)}
           }
             className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
@@ -189,7 +197,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Description */}
         <div className='w-full flex flex-col gap-[5px]'>
           <label className='text-sm font-semibold'>Description</label>
-          <textarea rows='3' placeholder='Enter product description' onChange={
+          <textarea rows='3' placeholder='Enter product description' value={description} onChange={
             (description)=>{setdescription(description.target.value)}
           }
             className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'></textarea>
@@ -198,7 +206,7 @@ axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
         {/* Buttons */}
         <div className='w-full flex justify-center gap-4 mt-4'>
           <button onClick={addProduct} className='bg-green-600 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-700 transition'>
-            Add Product
+           Update Product
           </button>
           <Link  to="/admin/products" className='bg-gray-400 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-500 transition'>
             Cancel
