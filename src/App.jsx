@@ -1,9 +1,6 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import ProductCart from './components/productCart'
-import SuperProduct from './components/superProduct'
-import HomePage from './pages/homePage';
 import LoginPage from './pages/loginPage';
 import Register from './pages/registerPage';
 import Admin from './pages/adminPage';

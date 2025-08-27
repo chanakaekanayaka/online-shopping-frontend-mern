@@ -68,7 +68,10 @@ export default function ProductsAdmin(){
                         <td className="p-[10px]">{product.altNames}</td>
                         <td className="p-[10px]">{product.labelledPrice}</td>
                         <td className="p-[10px]">{product.price}</td>
-                        <td className="p-[10px]">{product.image}</td>
+                        <td className="p-[10px]">
+                          <img src={product.image[0] } className="w-[40px] h-[40px] rounded-[10px] ">
+                          </img>
+                          </td>
                         <td className="p-[10px]">{product.description}</td>
                         <td className="p-[10px]">{product.stock}</td>
                         <td className="p-[10px]">{product.isAvilable}</td>
