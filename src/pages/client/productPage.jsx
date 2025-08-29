@@ -27,20 +27,21 @@ export default function ProductPage(){
     )
 
     return(
-        <div className="w-full h-full bg-purple-400 flex ">
+        <div className="w-full h-full ">
             {
                 isLoading ? <Loader></Loader> :
                 
-                   
+                <div className="w-full  flex flex-wrap gap-[40px] justify-center items-center py-[40px]">{
                     products.map(
                         (product)=>{
                             return(
-                                <ProductCard></ProductCard>
+                                <ProductCard key={product.productID} product={product}/>
                                 
                             )
 
                     })
-                   
+                }
+                </div>
 
                 
                 
