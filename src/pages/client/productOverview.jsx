@@ -72,7 +72,7 @@ return (
         }
 
         {
-            status == "error" && <div>Error loading product</div>
+            status == "error" && <div>Error loading product......</div>
 
         }
            

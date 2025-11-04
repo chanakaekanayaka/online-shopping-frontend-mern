@@ -64,7 +64,8 @@ if(token == null){
 axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
     {
         headers :{
-                Authorization: "Bearer "+token
+                 Authorization: "Bearer " + token
+                
         }
     }
 
