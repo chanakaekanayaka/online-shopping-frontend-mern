@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router-dom"
 import Loader from "../../components/loader";
 import ImagesSlider from "../../components/imageSlider";
+import { addToCart, getCart } from "../../utils/cart";
 
 export default function ProductOverview(){
 const params = useParams();
@@ -61,8 +62,15 @@ return (
 
                     </div>
                     <div className="w-full flex flex-row justify-center items-center mt-[20px] gap-[15px]">
-                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500 hover:bg-white hover:text-blue-700">Add Cart</button>
-                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500  hover:bg-white hover:text-blue-700" >Buy Now</button>
+                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500 hover:bg-white hover:text-blue-700" 
+                         onClick={()=>{
+                           
+                            addToCart(product,1)
+                            toast.success("Product added to cart")
+                            console.log(getCart())
+
+                        }} >Add Cart</button>
+                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500  hover:bg-white hover:text-blue-700">Buy Now</button>
 
                     </div>
 
