@@ -26,10 +26,10 @@ export function addToCart(product, qty){
     if(existingProductIndex == -1){
         cart.push(
             {
-                productId: product.productId,
+                productId: product.productID,
                 quantity: qty,
                 price:product.price,
-                name:product.name,
+                name:product.productName,
                 altNames:product.altNames,
                 image:product.image[0],
             }

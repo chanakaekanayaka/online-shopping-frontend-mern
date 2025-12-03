@@ -7,13 +7,13 @@ export default function CartPage(){
 
     return(
 
-        <div className="w-full h-screen flex flex-col py-[40px] items-center">
+        <div className="w-full h-screen flex flex-col py-[40px] items-center ">
             {
 
                 cart.map(
                     (item)=>{
                         return (
-                            <div key={item.productId} className="w-[80px] h-[100px] m-[10px] shadow-2xl flex flex-row items-center">
+                            <div key={item.productId} className="w-[800px] h-[100px] m-[10px] shadow-2xl flex flex-row items-center bg-red-500 ">
                                 <img src={item.image} className="w-[100px] h-[100px] object-cover"/>
                             </div>
                               
