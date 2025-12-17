@@ -8,8 +8,7 @@ import TestPage from './pages/testPage';
 import { Toaster } from 'react-hot-toast';
 import ClientWebPage from './pages/client/clientPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-const GoogleClientID= "543225349236-56s66gge0da04k5hrntpkrkgnhnieg5p.apps.googleusercontent.com"
-const GoogleClientsecret= "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"
+
 
 
 
