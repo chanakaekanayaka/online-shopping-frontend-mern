@@ -7,6 +7,9 @@ import Admin from './pages/adminPage';
 import TestPage from './pages/testPage';
 import { Toaster } from 'react-hot-toast';
 import ClientWebPage from './pages/client/clientPage';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+const GoogleClientID= "543225349236-56s66gge0da04k5hrntpkrkgnhnieg5p.apps.googleusercontent.com"
+const GoogleClientsecret= "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"
 
 
 
@@ -18,7 +21,9 @@ function App() {
   return (
     
     <BrowserRouter>
-      <div className="h-screen w-full   flex justify-center items-center ">
+      <GoogleOAuthProvider clientId={GoogleClientID}>
+
+        <div className="h-screen w-full   flex justify-center items-center ">
         <Toaster position='top-right'/>
 
         <Routes >
@@ -32,6 +37,9 @@ function App() {
 
         </Routes>
       </div>
+
+      </GoogleOAuthProvider>
+      
     </BrowserRouter>
        
     

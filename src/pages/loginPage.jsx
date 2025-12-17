@@ -2,11 +2,44 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage() {
+ 
+
+
   const [password,setPassword] = useState("")
   const [email,setEmail] =useState("")
   const navigate = useNavigate()
+  
+ const googleLogin = useGoogleLogin({
+  onSuccess: (response) => {
+    console.log("Google response:", response);
+    
+    axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/google-login", {
+      token: response.access_token
+    })
+    .then((res) => {
+      // res.data contains the JSON object sent from backend
+      const { token, role, message } = res.data;
+
+      localStorage.setItem("token", token);
+      toast.success(message || "Login successful");
+
+      // Redirect based on role
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Google login failed at backend");
+    });
+  },
+  onError: () => toast.error("Google Login Failed"),
+});
 
   function login(){
     console.log(email,password)
@@ -88,6 +121,9 @@ export default function LoginPage() {
         {/* Login Button */}
         <button onClick={login} className="w-[calc(100%/2)] h-[40px] bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-2xl shadow-lg transition-all duration-300">
           Login
+        </button>
+        <button onClick={googleLogin} className="w-[350px] h-[40px]">
+          Google Login
         </button>
         <p>Dont have an account <Link to="/register" className="text-white ">signUp</Link> here</p>
       </div>
