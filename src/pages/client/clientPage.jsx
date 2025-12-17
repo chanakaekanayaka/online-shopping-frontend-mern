@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "../../components/header";
-import { TbH1 } from "react-icons/tb";
 import ProductPage from "./productPage";
 import ProductOverview from "./productOverview";
 import CartPage from "./cart";
+import CheckoutPage from "./checkoutPage";
+
 
 
 export default function ClientWebPage(){
@@ -18,6 +19,7 @@ export default function ClientWebPage(){
                     <Route path="/reviews" element={<h1>Reviews</h1>}></Route>
                     <Route path="/contactus" element={<h1>contact Us</h1>}></Route>
                     <Route path="/aboutus" element={<h1>About Us</h1>}></Route>
+                    <Route path="/checkout" element={<CheckoutPage></CheckoutPage>}></Route>
                     <Route path="/cart" element={<CartPage></CartPage>}></Route>
                     <Route path="/*" element={<h1>404 NOT FOUND</h1>}></Route>
                     <Route path="/overview/:productID" element={<ProductOverview></ProductOverview>}></Route>

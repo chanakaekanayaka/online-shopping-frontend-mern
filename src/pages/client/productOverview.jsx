@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Loader from "../../components/loader";
 import ImagesSlider from "../../components/imageSlider";
 import { addToCart, getCart } from "../../utils/cart";
@@ -10,7 +10,7 @@ export default function ProductOverview(){
 const params = useParams();
 const [product , setProduct] = useState(null);
 const [status , setState] = useState("loading");
-
+const navigate = useNavigate();
 useEffect(
     ()=>{
         if(status == "loading"){
@@ -70,7 +70,23 @@ return (
                             console.log(getCart())
 
                         }} >Add Cart</button>
-                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500  hover:bg-white hover:text-blue-700">Buy Now</button>
+                        <button className="w-[200px] h-[30px] cursor-pointer rounded-xl shadow-2xl text-amber-50 bg-blue-500  hover:bg-white hover:text-blue-700"
+                        onClick={
+                            ()=>{
+
+                                navigate("/checkout", {state: {
+                                    items:[{
+                                        productId:product.productID,
+                                        quantity:1,
+                                        name: product.productName,
+                                        image:product.image[0],
+                                        price:product.price
+                                    }]
+                                }})
+
+                            }
+                        }>
+                        Buy Now</button>
 
                     </div>
 
