@@ -8,6 +8,8 @@ import TestPage from './pages/testPage';
 import { Toaster } from 'react-hot-toast';
 import ClientWebPage from './pages/client/clientPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+// Change lines 11/12 to use the env variable
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 
 
