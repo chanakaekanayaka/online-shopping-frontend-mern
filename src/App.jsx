@@ -9,13 +9,6 @@ import { Toaster } from 'react-hot-toast';
 import ClientWebPage from './pages/client/clientPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
-
-
-
-
-
-
 function App() {
  
 
