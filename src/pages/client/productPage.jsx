@@ -8,11 +8,14 @@ export default function ProductPage(){
 
     const [products,setProducts] = useState([]);
     const [isLoading,setLoading] = useState(true);
+    const [query, setQuery] = useState("")
 
     useEffect(
         ()=>{
             if(isLoading){
-                axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
+                if(query==""){
+
+                    axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products").then(
                     (res)=>{
                         console.log(res.data);
 
@@ -20,6 +23,19 @@ export default function ProductPage(){
                         setLoading(false)
                     }
                 )
+
+            }else{
+
+                   axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products/search/"+query)
+                   .then(
+                    (res)=>{
+                        setProducts(res.data)
+                        setLoading(false)
+                    }
+                )
+
+            }
+                
             }
 
         },
@@ -28,6 +44,20 @@ export default function ProductPage(){
 
     return(
         <div className="w-full h-full ">
+            <div className="w-full h-[100px] flex justify-center items-center">
+                <input className="w-[400px] h-40px border border-gray-400 rounded-lg p-2" 
+                type="text"
+                placeholder="search products..."
+                value={query}
+                onChange={(e)=>{
+                setQuery(e.target.value)
+                setLoading(true)
+
+                }
+                }/>
+
+            </div> 
+
             {
                 isLoading ? <Loader></Loader> :
                 
