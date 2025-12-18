@@ -9,8 +9,8 @@ import { Toaster } from 'react-hot-toast';
 import ClientWebPage from './pages/client/clientPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const GoogleClientID= "543225349236-56s66gge0da04k5hrntpkrkgnhnieg5p.apps.googleusercontent.com"
-const GoogleClientsecret= "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"
+
+
 
 
 
@@ -22,7 +22,7 @@ function App() {
   return (
     
     <BrowserRouter>
-      <GoogleOAuthProvider clientId={GoogleClientID}>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
 
         <div className="h-screen w-full   flex justify-center items-center ">
         <Toaster position='top-right'/>
