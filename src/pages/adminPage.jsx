@@ -1,4 +1,4 @@
-import {  Link, Route, Routes } from "react-router-dom";
+import {  Link, Route, Routes, useNavigate } from "react-router-dom";
 import { FaBox } from "react-icons/fa";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { FaUserCog } from "react-icons/fa";
@@ -7,14 +7,49 @@ import ProductsAdmin from "./Admin/productsAdmin";
 import AddnewProductAdminPage from "./Admin/newProductAdminPage";
 import UpdateProduct from "./Admin/updateProduct";
 import OrdersPageAdmin from "./Admin/ordersPageAdmin";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 
 export default function Admin(){
 
+    const navigate = useNavigate();
+    const [adminValidated, setAdminValidated] = useState(false);
+
+    useEffect(
+        ()=>{
+            const token = localStorage.getItem("token");
+            if(token==null){
+                toast.error("Your are not login ");
+                navigate("/login")
+            }else{
+                axios.get(import.meta.env.VITE_BACKEND_URL+"/api/users/",{
+                    headers: {
+                        Authorization:`Bearer ${token}`,
+                    },
+                }).then((Response)=>{
+                    if(Response.data.role=="admin"){
+                        setAdminValidated(true);
+                    }else{
+                        toast.error("You are not authorized")
+                        navigate("/login");
+                    }
+                }).catch(()=>{
+                    toast.error("You are not authorized");
+                    navigate("/login")
+                });
+            }
+        }
+
+    ,[]);
+
     return(
       
-            <div className="h-full w-screen bg-amber-50 flex">
-            <div className="h-full w-[300px] bg-amber-300  flex flex-col  items-center">
+      <div className="h-full w-screen bg-amber-50 flex">
+            {adminValidated?<>
+                <div className="h-full w-[300px] bg-amber-300  flex flex-col  items-center">
                 <span className="text-3xl font-extrabold">Admin Pannel</span>
                 <Link className="  flex-row border flex p-[5px] justify-center items-center  w-full h-[50px] text-2xl text-white bg-blue-400 gap-[35px]"  to="/admin/products"><FaBox/> Products </Link>
                 <Link className="  flex-row border flex p-[5px] justify-center items-center  w-full h-[50px] text-2xl text-white bg-blue-400 gap-[35px]"  to="/admin/orders"><GiBoxUnpacking/> Orders </Link>
@@ -32,10 +67,12 @@ export default function Admin(){
                 <Route path="/orders" element={<OrdersPageAdmin></OrdersPageAdmin>}/>
             </Routes>
             </div>
+        </>:<Loader/>}
+            
 
            
 
-        </div>
+     </div>
         
         
     );
