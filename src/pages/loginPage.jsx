@@ -5,41 +5,34 @@ import toast from "react-hot-toast";
 import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage() {
- 
-
 
   const [password,setPassword] = useState("")
   const [email,setEmail] =useState("")
   const navigate = useNavigate()
   
- const googleLogin = useGoogleLogin({
-  onSuccess: (response) => {
-    console.log("Google response:", response);
-    
-    axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/google-login", {
-      token: response.access_token
-    })
-    .then((res) => {
-      // res.data contains the JSON object sent from backend
-      const { token, role, message } = res.data;
-
-      localStorage.setItem("token", token);
-      toast.success(message || "Login successful");
-
-      // Redirect based on role
-      if (role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      toast.error("Google login failed at backend");
-    });
-  },
-  onError: () => toast.error("Google Login Failed"),
-});
+  const googleLogin = useGoogleLogin({
+    onSuccess: (response)=>{
+      console.log(response)
+      axios.post(import.meta.env.VITE_BACKEND_URL+"/api/users/google-login",{
+        token: response.access_token
+      }).then(
+        (response)=>{
+          console.log(response.data)
+          localStorage.setItem("token", response.data.token)
+          toast.success("Login successfull")
+          if(response.data.role=="admin"){
+            navigate("/admin")
+          }else if(response.data.role == "user"){
+            navigate("/")
+          }
+        }
+      ).catch(
+        ()=>{
+          toast.error("Google login failed")
+        }
+      )
+    }
+  });
 
   function login(){
     console.log(email,password)
@@ -92,7 +85,7 @@ export default function LoginPage() {
               
               setEmail(email.target.value)
               console.log(email)
-             
+              
             }
           }
             type="email"
