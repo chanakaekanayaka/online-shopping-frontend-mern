@@ -1,3 +1,8 @@
+.env
+.env.local
+node_modules/
+
+
 # Logs
 logs
 *.log
@@ -23,6 +28,4 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
-.env.local
-node_modules/
+
