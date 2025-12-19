@@ -104,7 +104,14 @@ export default function LoginPage() {
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="google" />
           Continue with Google
         </button>
-<<<<<
+
+        {/* Footer Link */}
+        <p className="text-slate-400 text-sm">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-400 hover:text-blue-300 font-semibold underline-offset-4 hover:underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );
