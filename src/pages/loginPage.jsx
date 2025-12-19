@@ -105,7 +105,7 @@ export default function LoginPage() {
           Continue with Google
         </button>
 
-        {/* Footer Link */}
+        {/* Footer Link to register page*/}
         <p className="text-slate-400 text-sm">
           Don't have an account?{" "}
           <Link to="/register" className="text-blue-400 hover:text-blue-300 font-semibold underline-offset-4 hover:underline">
