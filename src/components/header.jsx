@@ -1,25 +1,57 @@
-import { BiCart } from "react-icons/bi";
-import { Link, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { BiCart, BiMenu, BiX } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Header(){
-    const token = localStorage.getItem("token")
-    return(
-        <div className="h-[100px]  bg-amber-500 flex justify-center items-center gap-7 relative ">
-                xvcxvcxvcxvcxvcxvcxvcxv
-            <Link to="/"  className="text-amber-100 text-3xl ">Home</Link>
-            <Link to="/reviews"  className="text-amber-100 text-3xl  hover:text-black hover:text-bold">Reviews</Link>
-            <Link to="/products"  className="text-amber-100 text-3xl  hover:text-black hover:text-bold">Product</Link>
-            <Link to="/contactus"  className="text-amber-100 text-3xl  hover:text-black hover:text-bold">ContactUs</Link>
-            <Link to="/aboutus"  className="text-amber-100 text-3xl  hover:text-black hover:text-bold">AboutUs</Link>
-            <Link to="/cart"  className="absolute right-4"><BiCart className="text-white  text-3xl ml-4"></BiCart></Link>
-            {token != null && <button className="absolute right-[250px]" onClick={()=>{
-                localStorage.removeItem("token")
-                Navigate("/login")
+export default function Header() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-            }}>
+  return (
+    <header className="h-[80px] w-full bg-slate-950 border-b border-slate-800 sticky top-0 z-50 flex items-center justify-between px-6">
+      
+      {/* Logo */}
+      <Link to="/" className="text-2xl font-bold text-white tracking-tighter shrink-0">
+        E-<span className="text-blue-600">SHOP</span>
+      </Link>
+
+      {/* Navigation -  Mobile/Desktop  */}
+      <nav className={`
+        ${isMenuOpen ? "flex" : "hidden"} 
+        lg:flex flex-col lg:flex-row absolute lg:relative top-[80px] lg:top-0 left-0 w-full lg:w-auto 
+        bg-slate-950 lg:bg-transparent p-6 lg:p-0 gap-6 lg:gap-8 border-b lg:border-none border-slate-800 transition-all duration-300
+      `}>
+        <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">Home</Link>
+        <Link to="/reviews" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">Reviews</Link>
+        <Link to="/products" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">Product</Link>
+        <Link to="/contactus" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">ContactUs</Link>
+        <Link to="/aboutus" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">AboutUs</Link>
+      </nav>
+
+      {/* Cart, Logout, Mobile Toggle */}
+      <div className="flex items-center gap-4">
+        {token != null && (
+          <button 
+            onClick={() => { localStorage.removeItem("token"); navigate("/login"); }}
+            className="hidden md:block text-slate-400 hover:text-red-500 text-sm font-semibold transition-colors"
+          >
             Logout
-            </button>}
+          </button>
+        )}
 
-        </div>
-    )
+        <Link to="/cart" className="relative p-2 bg-slate-900 border border-slate-800 rounded-full hover:bg-slate-800 transition-colors">
+          <BiCart className="text-white text-2xl" />
+          <span className="absolute top-0 right-0 h-3 w-3 bg-blue-600 border-2 border-slate-950 rounded-full"></span>
+        </Link>
+
+        {/* Visible only on mobile/tablet*/}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)} 
+          className="lg:hidden text-slate-300 hover:text-white transition-colors"
+        >
+          {isMenuOpen ? <BiX size={32} /> : <BiMenu size={32} />}
+        </button>
+      </div>
+    </header>
+  );
 }
