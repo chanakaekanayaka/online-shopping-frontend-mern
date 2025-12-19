@@ -78,7 +78,7 @@ export default function LoginPage() {
         </div>
 
         {/* Password Input */}
-        <div className="w-full mb-8">
+        <div className="w-full mb-2">
           <label className="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Password</label>
           <input 
             onChange={(e) => setPassword(e.target.value)}
@@ -86,6 +86,16 @@ export default function LoginPage() {
             placeholder="••••••••"
             className="w-full h-12 px-4 text-slate-200 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all placeholder-slate-500"
           />
+        </div>
+
+        {/* Forgot Password Link */}
+        <div className="w-full flex justify-end mb-8">
+          <Link 
+            to="/forget" 
+            className="text-xs text-slate-500 hover:text-blue-400 transition-colors"
+          >
+            Forgot password?
+          </Link>
         </div>
 
         {/* Login Button */}
