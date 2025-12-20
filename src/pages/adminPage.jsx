@@ -47,7 +47,7 @@ export default function Admin() {
     <div className="min-h-screen w-full bg-slate-50 flex font-sans">
       {adminValidated ? (
         <>
-          {/* Sidebar */}
+          {/* Sidebar ui*/}
           <div className="min-h-screen w-[300px] bg-white border-r border-slate-200 flex flex-col items-center shadow-sm">
             <div className="py-10">
               <span className="text-2xl font-bold text-slate-800 tracking-tight">
