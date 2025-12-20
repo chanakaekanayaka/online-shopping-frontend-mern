@@ -9,13 +9,14 @@ import ClientWebPage from './pages/client/clientPage';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ForgetPasswordPage from './pages/client/forgetPassword';
 
+
 function App() {
   return (
     <BrowserRouter>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
        
         
-        <div className="min-h-screen w-full bg-slate-950">
+        <div className="min-h-screen  w-full bg-slate-950">
           <Toaster position='top-right'/>
 
           <Routes>

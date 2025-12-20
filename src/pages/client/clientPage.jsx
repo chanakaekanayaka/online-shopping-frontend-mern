@@ -5,7 +5,9 @@ import ProductOverview from "./productOverview";
 import CartPage from "./cart";
 import CheckoutPage from "./checkoutPage";
 import Footer from "../../components/footer";
-import ContactUs from "./contactUs";
+import ContactUs from "./contactUs"
+import HomePage from "../homePage";
+import AboutUs from "./aboutUs";
 
 
 
@@ -17,11 +19,11 @@ export default function ClientWebPage() {
       <Header />
       <div className="flex-grow"> 
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/reviews" element={<h1 className="text-white text-3xl p-10">Reviews</h1>} />
           <Route path="/contactus" element={<ContactUs/>} />
-          <Route path="/aboutUs" element={<h1>About us</h1>} />
+          <Route path="/aboutUs" element={<AboutUs/>} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/overview/:productID" element={<ProductOverview />} />
