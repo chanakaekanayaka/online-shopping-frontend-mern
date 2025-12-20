@@ -4,211 +4,171 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import uploadfile from '../../utils/mediaUpload';
 
-export default function AddnewProductAdminPage(){ 
+export default function AddnewProductAdminPage() {
 
-const [productID,setproductID] = useState("");
-const [productName,setproductName] = useState("");
-const [altNames,setaltNames] = useState("");
-const [labelledPrice,setlabelledPrice] = useState("");
-const [price,setprice] = useState("");
-const [image ,setimage ] = useState([]);   
-const [description ,setdescription ] = useState("");
-const [stock,setstock] = useState("");
-const [isAvailable,setisAvailable] = useState("");
-const [category ,setcategory] = useState("");
-const navigate = useNavigate();
+    const [productID, setproductID] = useState("");
+    const [productName, setproductName] = useState("");
+    const [altNames, setaltNames] = useState("");
+    const [labelledPrice, setlabelledPrice] = useState("");
+    const [price, setprice] = useState("");
+    const [image, setimage] = useState([]);
+    const [description, setdescription] = useState("");
+    const [stock, setstock] = useState("");
+    const [isAvailable, setisAvailable] = useState("true"); // Set a default value
+    const [category, setcategory] = useState("");
+    const navigate = useNavigate();
 
+    async function addProduct() {
+        const AltnameInarry = altNames.split(",")
+        const promiseArray = []
 
-    
-
-
-async function addProduct(){
-
-    const AltnameInarry = altNames.split(",")
-
-    const promiseArray = []
-
-    for(let i=0; i<image.length ; i++){
-
-        const promise = uploadfile(image[i])
-        promiseArray[i] = promise
-    } 
-
-    const responses = await Promise.all(promiseArray)
-    console.log(responses)
-    
-    const productData = {
-
-
-        productID : productID,
-        productName : productName,
-        altNames : AltnameInarry,
-        labelledPrice : labelledPrice,
-        price : price,
-        image : responses,
-        description : description,
-        stock : stock,
-        isAvailable : isAvailable,
-        category : category
-    }
-    console.log(productData)
-
-
-    const token =localStorage.getItem("token")
-
-if(token == null){
-    window.location.href="/login";
-    return 
-}
-
-axios.post(import.meta.env.VITE_BACKEND_URL +"/api/products",productData,
-    {
-        headers :{
-                 Authorization: "Bearer " + token
-                
+        for (let i = 0; i < image.length; i++) {
+            const promise = uploadfile(image[i])
+            promiseArray[i] = promise
         }
-    }
 
+        const responses = await Promise.all(promiseArray)
 
-).then(
-    
-    (response)=>{
+        const productData = {
+            productID: productID,
+            productName: productName,
+            altNames: AltnameInarry,
+            labelledPrice: labelledPrice,
+            price: price,
+            image: responses,
+            description: description,
+            stock: stock,
+            isAvailable: isAvailable,
+            category: category
+        }
 
-        console.log("Product added sucessfull..")
-        console.log(response.data)
-        toast.success("Product added sucessfully..")
-        navigate("/admin/products")
+        const token = localStorage.getItem("token")
+        if (token == null) {
+            window.location.href = "/login";
+            return
+        }
 
-    }
-
-).catch(
-    (error)=>{
-        console.error("Error adding product :",error)
-        toast.error("Product added unsucessfully..")
-
-    }
-)
-
-}
-
-
-
-
-  return (
-    <div className='h-full w-full bg-green-400 flex justify-center items-center'>
-      <div className='h-[600px] w-[650px] border-2 bg-amber-300 shadow-xl rounded-2xl flex flex-wrap justify-between p-6'>
-        
-        {/* Product ID */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Product ID</label>
-          <input type='text' placeholder='Enter Product ID' onChange={(productID)=>{
-            setproductID(productID.target.value)
-
-          }}
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
-
-        {/* Product Name */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Product Name</label>
-          <input type='text' placeholder='Enter Product Name' onChange={
-            (productName)=>{
-                setproductName(productName.target.value)
-
+        axios.post(import.meta.env.VITE_BACKEND_URL + "/api/products", productData,
+            {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
             }
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+        ).then(
+            (response) => {
+                toast.success("Product added successfully..")
+                navigate("/admin/products")
+            }
+        ).catch(
+            (error) => {
+                toast.error("Product added unsuccessfully..")
+            }
+        )
+    }
 
-        {/* Alternative Names */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Alternative Names</label>
-          <input type='text' placeholder='Enter alternative names' value={altNames} onChange={
-            (altNames)=>{setaltNames(altNames.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+    return (
+        <div className='w-full min-h-full bg-slate-50 flex justify-center items-center py-10'>
+            <div className='w-full max-w-[700px] bg-white shadow-sm border border-slate-200 rounded-3xl flex flex-wrap justify-between p-8'>
+                
+                <div className='w-full mb-6'>
+                    <h2 className='text-2xl font-bold text-slate-800'>Add New Product</h2>
+                    <p className='text-slate-500 text-sm'>Fill in the details below to list a new item in your store.</p>
+                </div>
 
-        {/* Labelled Price */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Labelled Price</label>
-          <input type='number' placeholder='Enter labelled price' value={labelledPrice} onChange={
-            (labelledPrice)=>{setlabelledPrice(labelledPrice.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+                {/* Product ID */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Product ID</label>
+                    <input type='text' placeholder='e.g. PRD-001' 
+                        onChange={(e) => setproductID(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Price */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Price</label>
-          <input type='number' placeholder='Enter final price' value={price} onChange={
-            (price)=>{setprice(price.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+                {/* Product Name */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Product Name</label>
+                    <input type='text' placeholder='Enter Product Name' 
+                        onChange={(e) => setproductName(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Stock */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Stock</label>
-          <input type='number' placeholder='Enter stock quantity' value={stock} onChange={
-            (stock)=>{setstock(stock.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+                {/* Alternative Names */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Alternative Names (Comma separated)</label>
+                    <input type='text' placeholder='tag1, tag2' value={altNames} 
+                        onChange={(e) => setaltNames(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Availability */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Available</label>
-          <select className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'  onChange={
-            (isAvailable)=>{setisAvailable(isAvailable.target.value)}
-          }
-            >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
+                {/* Labelled Price */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Labelled Price (LKR)</label>
+                    <input type='number' placeholder='0.00' value={labelledPrice} 
+                        onChange={(e) => setlabelledPrice(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Category */}
-        <div className='w-[45%] flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Category</label>
-          <input type='text' placeholder='Enter category' onChange={
-            (category)=>{setcategory(category.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+                {/* Price */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Selling Price (LKR)</label>
+                    <input type='number' placeholder='0.00' value={price} 
+                        onChange={(e) => setprice(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Image Upload */}
-        <div className='w-full flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Product Image</label>
-          <input multiple
-          
-                 type="file"  
-                onChange={(e) => setimage(e.target.files)}
-            className='border rounded-lg px-2 py-1 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500'/>
-        </div>
+                {/* Stock */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Stock Quantity</label>
+                    <input type='number' placeholder='0' value={stock} 
+                        onChange={(e) => setstock(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-        {/* Description */}
-        <div className='w-full flex flex-col gap-[5px]'>
-          <label className='text-sm font-semibold'>Description</label>
-          <textarea rows='3' placeholder='Enter product description' onChange={
-            (description)=>{setdescription(description.target.value)}
-          }
-            className='border rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500'></textarea>
-        </div>
+                {/* Availability */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Available</label>
+                    <select 
+                        onChange={(e) => setisAvailable(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all cursor-pointer'>
+                        <option value="true">Yes, In Stock</option>
+                        <option value="false">No, Out of Stock</option>
+                    </select>
+                </div>
 
-        {/* Buttons */}
-        <div className='w-full flex justify-center gap-4 mt-4'>
-          <button onClick={addProduct} className='bg-green-600 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-700 transition'>
-            Add Product
-          </button>
-          <Link  to="/admin/products" className='bg-gray-400 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-500 transition'>
-            Cancel
-          </Link>
-        </div>
+                {/* Category */}
+                <div className='w-[48%] flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Category</label>
+                    <input type='text' placeholder='e.g. Electronics' 
+                        onChange={(e) => setcategory(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-2 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all'/>
+                </div>
 
-      </div>
-    </div>
-  )
+                {/* Image Upload */}
+                <div className='w-full flex flex-col gap-1.5 mb-4'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Product Images</label>
+                    <input multiple type="file"  
+                        onChange={(e) => setimage(e.target.files)}
+                        className='border border-slate-200 border-dashed rounded-xl px-4 py-8 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer text-slate-500'/>
+                </div>
+
+                {/* Description */}
+                <div className='w-full flex flex-col gap-1.5 mb-6'>
+                    <label className='text-sm font-semibold text-slate-700 ml-1'>Description</label>
+                    <textarea rows='3' placeholder='Briefly describe the product features...' 
+                        onChange={(e) => setdescription(e.target.value)}
+                        className='border border-slate-200 rounded-xl px-4 py-3 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none'></textarea>
+                </div>
+
+                {/* Buttons */}
+                <div className='w-full flex justify-end gap-3 mt-2 border-t border-slate-100 pt-6'>
+                    <Link to="/admin/products" className='bg-slate-100 text-slate-600 px-8 py-2.5 rounded-xl font-semibold hover:bg-slate-200 transition-colors'>
+                        Cancel
+                    </Link>
+                    <button onClick={addProduct} className='bg-blue-600 text-white px-8 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all active:scale-95'>
+                        Add Product
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    )
 }
-
-
