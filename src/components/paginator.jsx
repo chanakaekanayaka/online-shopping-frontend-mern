@@ -1,23 +1,23 @@
 import React from 'react';
 
 export default function Paginator(props) {
-    // 1. Destructure props (Removed setLoading as it is not needed here anymore)
+    // Destructure props
     const { currentPage, totalPages, setCurrentPage, limit, LIMIT, setLimit } = props;
 
-    // 2. Handle limit prop mismatch
+    // Handle limit prop mismatch
     const pageSize = limit || LIMIT || 10;
     
-    // 3. Safety check for totalPages
+    // Safety check for totalPages
     const safeTotalPages = totalPages > 0 ? totalPages : 1;
 
     return (
-        <div className="w-full flex flex-row justify-end items-center gap-4 text-gray-600">
+        <div className="w-full flex flex-row justify-end items-center gap-6 text-slate-600">
             
             {/* Limit Selector */}
-            <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">Rows:</span>
+            <div className="flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Rows per page:</span>
                 <select 
-                    className="h-[32px] border border-gray-300 rounded px-2 bg-white text-sm focus:outline-none focus:border-blue-500 cursor-pointer"
+                    className="h-[36px] border border-slate-200 rounded-xl px-3 bg-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 cursor-pointer transition-all"
                     value={pageSize}
                     onChange={(e) => {
                         setLimit(parseInt(e.target.value));
@@ -31,35 +31,37 @@ export default function Paginator(props) {
                 </select>
             </div>
 
-            {/* Pagination Buttons */}
-            <div className="flex items-center gap-2">
-                <button 
-                    className={`px-3 py-1 border rounded text-sm font-medium transition-colors ${
-                        currentPage <= 1 
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
-                        : "bg-white hover:bg-gray-100 text-gray-700"
-                    }`}
-                    disabled={currentPage <= 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                >
-                    Prev
-                </button>
-
-                <div className="text-sm font-medium">
-                    Page {currentPage} of {safeTotalPages}
+            {/* Pagination Controls */}
+            <div className="flex items-center gap-4">
+                <div className="text-sm font-medium text-slate-500">
+                    Page <span className="text-slate-900 font-bold">{currentPage}</span> of <span className="text-slate-900 font-bold">{safeTotalPages}</span>
                 </div>
 
-                <button 
-                    className={`px-3 py-1 border rounded text-sm font-medium transition-colors ${
-                        currentPage >= safeTotalPages 
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
-                        : "bg-blue-600 text-white hover:bg-blue-700 border-transparent"
-                    }`}
-                    disabled={currentPage >= safeTotalPages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                >
-                    Next
-                </button>
+                <div className="flex items-center gap-2">
+                    <button 
+                        className={`px-4 py-1.5 border rounded-xl text-sm font-bold transition-all ${
+                            currentPage <= 1 
+                            ? "bg-slate-50 text-slate-300 border-slate-100 cursor-not-allowed" 
+                            : "bg-white border-slate-200 text-slate-700 hover:border-blue-500 hover:text-blue-600 shadow-sm"
+                        }`}
+                        disabled={currentPage <= 1}
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                    >
+                        Previous
+                    </button>
+
+                    <button 
+                        className={`px-4 py-1.5 border rounded-xl text-sm font-bold transition-all shadow-lg ${
+                            currentPage >= safeTotalPages 
+                            ? "bg-slate-50 text-slate-300 border-slate-100 cursor-not-allowed shadow-none" 
+                            : "bg-blue-600 text-white border-transparent hover:bg-blue-700 shadow-blue-100"
+                        }`}
+                        disabled={currentPage >= safeTotalPages}
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
         </div>
     );
