@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BiCart, BiMenu, BiX } from "react-icons/bi";
+import { BiCart, BiMenu, BiX, BiUserCircle } from "react-icons/bi"; // Added User icon
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
         E-<span className="text-blue-600">SHOP</span>
       </Link>
 
-      {/* Navigation -  Mobile/Desktop  */}
+      {/* Navigation */}
       <nav className={`
         ${isMenuOpen ? "flex" : "hidden"} 
         lg:flex flex-col lg:flex-row absolute lg:relative top-[80px] lg:top-0 left-0 w-full lg:w-auto 
@@ -28,9 +28,21 @@ export default function Header() {
         <Link to="/aboutus" onClick={() => setIsMenuOpen(false)} className="text-slate-300 text-xl lg:text-lg hover:text-blue-500 font-medium">AboutUs</Link>
       </nav>
 
-      {/* Cart, Logout, Mobile Toggle */}
+      {/* Action Buttons */}
       <div className="flex items-center gap-4">
-        {token != null && (
+        
+        {/*  LOGIN/LOGOUT LOGIC */}
+        {token == null ? (
+         
+          <Link 
+            to="/login" 
+            className="hidden md:flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all active:scale-95"
+          >
+            <BiUserCircle size={20} />
+            Login
+          </Link>
+        ) : (
+          
           <button 
             onClick={() => { localStorage.removeItem("token"); navigate("/login"); }}
             className="hidden md:block text-slate-400 hover:text-red-500 text-sm font-semibold transition-colors"
@@ -44,7 +56,7 @@ export default function Header() {
           <span className="absolute top-0 right-0 h-3 w-3 bg-blue-600 border-2 border-slate-950 rounded-full"></span>
         </Link>
 
-        {/* Visible only on mobile/tablet*/}
+        {/* Mobile Toggle */}
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)} 
           className="lg:hidden text-slate-300 hover:text-white transition-colors"
