@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import LoginPage from './pages/loginPage';
@@ -11,35 +10,27 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import ForgetPasswordPage from './pages/client/forgetPassword';
 
 function App() {
- 
-
   return (
-    
     <BrowserRouter>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-
-        <div className="h-screen w-full   flex justify-center items-center ">
-        <Toaster position='top-right'/>
-
-        <Routes >
-         
-          <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/admin/*" element={<Admin/>}/>
-          <Route path="/test" element={<TestPage/>}/>
-          <Route path="/*" element={<ClientWebPage></ClientWebPage>}></Route>
-          <Route path="/forget" element={<ForgetPasswordPage/>}/>
-
-
-        </Routes>
-      </div>
-
-      </GoogleOAuthProvider>
-      
-    </BrowserRouter>
        
-    
+        
+        <div className="min-h-screen w-full bg-slate-950">
+          <Toaster position='top-right'/>
+
+          <Routes>
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/admin/*" element={<Admin/>}/>
+            <Route path="/test" element={<TestPage/>}/>
+            
+            <Route path="/*" element={<ClientWebPage/>}/>
+            <Route path="/forget" element={<ForgetPasswordPage/>}/>
+          </Routes>
+        </div>
+      </GoogleOAuthProvider>
+    </BrowserRouter>
   );
 }
 
-export default App
+export default App;
