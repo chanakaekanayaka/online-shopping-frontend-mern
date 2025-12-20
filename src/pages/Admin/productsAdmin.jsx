@@ -23,7 +23,7 @@ export default function ProductsAdmin() {
     <div className="w-full min-h-screen bg-slate-50 p-6 relative">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-slate-800">Product Management</h1>
-        <p className="text-slate-500 text-sm">Manage your store inventory and details</p>
+        <p className="text-slate-500 text-sm">Hi Admin</p>
       </div>
 
       {isLoading ? (
