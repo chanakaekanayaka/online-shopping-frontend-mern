@@ -4,36 +4,31 @@ import ProductPage from "./productPage";
 import ProductOverview from "./productOverview";
 import CartPage from "./cart";
 import CheckoutPage from "./checkoutPage";
+import Footer from "../../components/footer";
+import ContactUs from "./contactUs";
 
 
 
-export default function ClientWebPage(){
-
-    return(
-        <div className="w-full h-screen max-h-screen ">
-            <Header></Header>
-            <div className="w-full h-[calc(100%-100px)] "> 
-                <Routes path="/">
-                    <Route path="/" element={<h1>Home page</h1>}></Route>
-                    <Route path="/products" element={<ProductPage></ProductPage>}></Route>
-                    <Route path="/reviews" element={<h1>Reviews</h1>}></Route>
-                    <Route path="/contactus" element={<h1>contact Us</h1>}></Route>
-                    <Route path="/aboutus" element={<h1>About Us</h1>}></Route>
-                    <Route path="/checkout" element={<CheckoutPage></CheckoutPage>}></Route>
-                    <Route path="/cart" element={<CartPage></CartPage>}></Route>
-                    <Route path="/*" element={<h1>404 NOT FOUND</h1>}></Route>
-                    <Route path="/overview/:productID" element={<ProductOverview></ProductOverview>}></Route>
-                </Routes>
-
-            </div>
-          
-             
-        </div>
-        
-
-    )
-
-    
 
 
+export default function ClientWebPage() {
+  return (
+    <div className="w-full min-h-screen flex flex-col bg-slate-950">
+      <Header />
+      <div className="flex-grow"> 
+        <Routes>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/products" element={<ProductPage />} />
+          <Route path="/reviews" element={<h1 className="text-white text-3xl p-10">Reviews</h1>} />
+          <Route path="/contactus" element={<ContactUs/>} />
+          <Route path="/aboutUs" element={<h1>About us</h1>} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/overview/:productID" element={<ProductOverview />} />
+          <Route path="/*" element={<h1 className="text-white text-3xl p-10 text-center">404 NOT FOUND</h1>} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
 }
