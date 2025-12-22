@@ -10,7 +10,7 @@ export default function ProductPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   //  Categories 
-  const categories = ["Cricket", "Football", "Tennis", "Rugby", "Beauty", "Accessories"];
+  const categories = ["Cricket", "Football", "Tennis", "Rugby", "Footwear", "Fitness"];
 
   useEffect(() => {
     if (isLoading) {
