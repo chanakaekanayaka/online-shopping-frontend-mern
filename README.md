@@ -1,96 +1,112 @@
-# 🚀 Next-Gen-CV (Full-Stack)
+# 🏆 SportGear Elite | Modern MERN E-commerce
 
-**Next-Gen-CV** is a powerful, full-stack resume-building platform that allows users to create, manage, and store professional CVs. Built using the **MERN Stack**, it features secure authentication, cloud image hosting, and a seamless live-editing experience.
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://online-shopping-frontend-mern.vercel.app/)
+[![GitHub Repo](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git)
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://next-gen-cv-cmwu-f.vercel.app/)
-[![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue)](https://www.mongodb.com/mern-stack)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://vercel.com/)
-
----
-
-## 📸 Project Gallery
-
-| Home Page | Dashboard |
-| :---: | :---: |
-| ![Home](./client/public/Home.png) | ![Dashboard](./client/public/Dashboard.png) |
-
-### How it works
-| Step 1: Initialize | Step 2: Customization | Contact & Support |
-| :---: | :---: | :---: |
-| ![Step 1](./client/public/step1.png) | ![Step 2](./client/public/step2.png) | ![Contact](./client/public/contact.png) |
+SportGear Elite is a premium, full-stack e-commerce platform dedicated to high-performance sports tools and equipment. Built with the MERN stack (MongoDB, Express, React, Node.js), it offers a seamless shopping experience with AI-inspired UI/UX, robust state management, and a powerful administrative dashboard.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-* **Real-time Live Preview:** Instantly see changes as you build your CV.
-* **Secure Authentication:** Firebase-powered user login and registration.
-* **Cloud Image Hosting:** High-performance profile picture uploads via ImageKit.io.
-* **Database Persistence:** Save and edit your resumes anytime with MongoDB.
-* **Modern Templates:** Clean, professional designs built with Tailwind CSS.
-* **Export to PDF:** Download your completed CV in high-quality PDF format.
+* **🛡️ Secure Authentication:** JWT-based login and registration with protected routes.
+* **🛒 Advanced Shopping Cart:** Real-time cart updates with persistent storage.
+* **📊 Dynamic Dashboard:** Comprehensive user profile and order tracking.
+* **🔧 Admin Powerhouse:** Full CRUD capabilities for products, users, and order management.
+* **💳 Seamless Checkout:** Integrated shipping and payment flow.
+* **📱 Fully Responsive:** Optimized for mobile, tablet, and desktop using Tailwind CSS.
+
+---
+
+## 📸 Project Showcases
+
+### 🏠 Landing Page & Product Overview
+The gateway to premium sports gear, featuring modern layouts and high-performance tools.
+<p align="center">
+  <img src="public/home.png" width="45%" alt="Home Page" />
+  <img src="public/productoverview.png" width="45%" alt="Product Overview" />
+</p>
+
+### 🔑 Authentication & Admin Portal
+Secure login flows and a powerful management system for site administrators.
+<p align="center">
+  <img src="public/login.png" width="45%" alt="Login" />
+  <img src="public/admin.png" width="45%" alt="Admin Panel" />
+</p>
+
+### 🛍️ Shopping Experience
+A streamlined path from cart selection to secure order placement.
+<p align="center">
+  <img src="public/cart.png" width="30%" alt="Cart" />
+  <img src="public/checkout.png" width="30%" alt="Checkout" />
+  <img src="public/order.png" width="30%" alt="Order Success" />
+</p>
+
+### 👤 User Dashboard
+A personalized space for users to track history and manage their account.
+<p align="center">
+  <img src="public/dashboard.png" width="92%" alt="Dashboard" />
+</p>
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-* **React.js:** UI components and state management.
-* **Tailwind CSS:** Modern, responsive styling.
-* **Firebase Auth:** Secure user authentication.
+* **React.js** (Functional Components, Hooks)
+* **Redux Toolkit** (State Management)
+* **Tailwind CSS** (Modern Styling)
+* **Lucide React** (Iconography)
+* **React Router Dom** (Navigation)
 
 ### Backend
-* **Node.js & Express.js:** Scalable server-side logic and REST APIs.
-* **MongoDB:** NoSQL database for storing user profiles and CV data.
-* **ImageKit.io:** Image optimization and cloud storage for profile photos.
+* **Node.js & Express** (Server-side logic)
+* **MongoDB** (Database)
+* **Cloudinary** (Image Hosting)
+* **JWT** (Security)
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+To run this project locally, follow these steps:
 
-* Node.js (v18+)
-* MongoDB Account (Atlas or Local)
-* Firebase Project Credentials
-* ImageKit.io API Keys
-
-### Installation
-
-1. **Clone the repository:**
+1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/chanakaekanayaka/Next-Gen-CV.git](https://github.com/chanakaekanayaka/Next-Gen-CV.git)
-    cd Next-Gen-CV
+    git clone [https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git](https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git)
     ```
 
-2. **Install Dependencies & Run:**
+2.  **Install dependencies:**
     ```bash
-    # Install for Client and Server
     npm install
-    cd client && npm install
+    ```
 
-    # Run Development Server
+3.  **Setup Environment Variables:**
+    Create a `.env` file in the root directory and add your credentials:
+    ```env
+    VITE_BACKEND_URL=your_backend_url
+    ```
+
+4.  **Start the development server:**
+    ```bash
     npm run dev
     ```
 
 ---
 
-## 🏗️ Architecture
+## 🤝 Contribution
 
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-
-The application uses **React** for the frontend, communicating via **Axios** with an **Express** server. **MongoDB** stores the JSON structure of the CVs, while **ImageKit** handles the heavy lifting of image transformation and delivery.
-
----
-
-## 👤 Author
-
-**Chanaka Ekanayaka**
-* **GitHub:** [@chanakaekanayaka](https://github.com/chanakaekanayaka)
-* **Project Link:** [https://next-gen-cv-cmwu-f.vercel.app/](https://next-gen-cv-cmwu-f.vercel.app/)
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-Distributed under the MIT License.
+**Built with ❤️ by [Chanaka Ekanayaka](https://github.com/chanakaekanayaka)**
