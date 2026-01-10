@@ -1,73 +1,96 @@
-# 🛍️ [E-SHOP]
+# 🚀 Next-Gen-CV (Full-Stack)
 
-<div align="center">
+**Next-Gen-CV** is a powerful, full-stack resume-building platform that allows users to create, manage, and store professional CVs. Built using the **MERN Stack**, it features secure authentication, cloud image hosting, and a seamless live-editing experience.
 
-  <a href="https://online-shopping-frontend-mern.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/View_Live_Demo-🚀-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" />
-  </a>
-
-  <p align="center">
-    <b>A fully functional, responsive e-commerce platform built for high performance.</b>
-    <br />
-    <a href="https://your-live-link.com"><strong>Explore the Shop »</strong></a>
-  </p>
-</div>
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://next-gen-cv-cmwu-f.vercel.app/)
+[![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue)](https://www.mongodb.com/mern-stack)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://vercel.com/)
 
 ---
 
-## 🖼️ Interface Preview
+## 📸 Project Gallery
 
-I designed this site to be clean, modern, and user-friendly. Here are three main views:
+| Home Page | Dashboard |
+| :---: | :---: |
+| ![Home](./client/public/Home.png) | ![Dashboard](./client/public/Dashboard.png) |
 
-<table style="width: 100%; border: none;">
-  <tr>
-    <td align="center" width="33%">
-      <b>🏠 Home Page</b><br>
-      <img src="YOUR_IMAGE_LINK_1" alt="Home Screen" style="border-radius: 8px; border: 1px solid #eaeaea;">
-    </td>
-    <td align="center" width="33%">
-      <b>📦 Product Catalog</b><br>
-      <img src="YOUR_IMAGE_LINK_2" alt="Product Screen" style="border-radius: 8px; border: 1px solid #eaeaea;">
-    </td>
-    <td align="center" width="33%">
-      <b>💳 Checkout</b><br>
-      <img src="YOUR_IMAGE_LINK_3" alt="Checkout Screen" style="border-radius: 8px; border: 1px solid #eaeaea;">
-    </td>
-  </tr>
-</table>
+### How it works
+| Step 1: Initialize | Step 2: Customization | Contact & Support |
+| :---: | :---: | :---: |
+| ![Step 1](./client/public/step1.png) | ![Step 2](./client/public/step2.png) | ![Contact](./client/public/contact.png) |
 
 ---
 
-## 🛠️ Tools & Technologies
+## ✨ Features
 
-This project utilizes a modern stack to ensure speed and scalability.
-
-### 💻 Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-
-### ⚙️ Backend & Database
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-
-### 🚀 Deployment & Tools
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+* **Real-time Live Preview:** Instantly see changes as you build your CV.
+* **Secure Authentication:** Firebase-powered user login and registration.
+* **Cloud Image Hosting:** High-performance profile picture uploads via ImageKit.io.
+* **Database Persistence:** Save and edit your resumes anytime with MongoDB.
+* **Modern Templates:** Clean, professional designs built with Tailwind CSS.
+* **Export to PDF:** Download your completed CV in high-quality PDF format.
 
 ---
 
-## 🔗 Live Project Link
+## 🛠️ Tech Stack
 
-You can visit the live site here:  
-👉 **[Click here to visit [E-SHOP]](https://online-shopping-frontend-mern.vercel.app/)**
+### Frontend
+* **React.js:** UI components and state management.
+* **Tailwind CSS:** Modern, responsive styling.
+* **Firebase Auth:** Secure user authentication.
+
+### Backend
+* **Node.js & Express.js:** Scalable server-side logic and REST APIs.
+* **MongoDB:** NoSQL database for storing user profiles and CV data.
+* **ImageKit.io:** Image optimization and cloud storage for profile photos.
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 Getting Started
 
-1. **Clone the Repo**
-   ```bash
-   git clone [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
+### Prerequisites
+
+* Node.js (v18+)
+* MongoDB Account (Atlas or Local)
+* Firebase Project Credentials
+* ImageKit.io API Keys
+
+### Installation
+
+1. **Clone the repository:**
+    ```bash
+    git clone [https://github.com/chanakaekanayaka/Next-Gen-CV.git](https://github.com/chanakaekanayaka/Next-Gen-CV.git)
+    cd Next-Gen-CV
+    ```
+
+2. **Install Dependencies & Run:**
+    ```bash
+    # Install for Client and Server
+    npm install
+    cd client && npm install
+
+    # Run Development Server
+    npm run dev
+    ```
+
+---
+
+## 🏗️ Architecture
+
+
+
+The application uses **React** for the frontend, communicating via **Axios** with an **Express** server. **MongoDB** stores the JSON structure of the CVs, while **ImageKit** handles the heavy lifting of image transformation and delivery.
+
+---
+
+## 👤 Author
+
+**Chanaka Ekanayaka**
+* **GitHub:** [@chanakaekanayaka](https://github.com/chanakaekanayaka)
+* **Project Link:** [https://next-gen-cv-cmwu-f.vercel.app/](https://next-gen-cv-cmwu-f.vercel.app/)
+
+---
+
+## 📄 License
+
+Distributed under the MIT License.
