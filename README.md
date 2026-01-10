@@ -1,112 +1,97 @@
-# 🏆 SportGear Elite | Modern MERN E-commerce
+# 🏆 E-SHOP | Modern MERN E-commerce
+
+**E-SHOP** is a premium, full-stack e-commerce platform dedicated to high-performance sports tools and equipment. Built with the **MERN Stack**, it features a seamless shopping experience, secure Google authentication, OTP-based security, and a robust administrative dashboard.
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://online-shopping-frontend-mern.vercel.app/)
 [![GitHub Repo](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git)
-
-SportGear Elite is a premium, full-stack e-commerce platform dedicated to high-performance sports tools and equipment. Built with the MERN stack (MongoDB, Express, React, Node.js), it offers a seamless shopping experience with AI-inspired UI/UX, robust state management, and a powerful administrative dashboard.
-
----
-
-## ✨ Key Features
-
-* **🛡️ Secure Authentication:** JWT-based login and registration with protected routes.
-* **🛒 Advanced Shopping Cart:** Real-time cart updates with persistent storage.
-* **📊 Dynamic Dashboard:** Comprehensive user profile and order tracking.
-* **🔧 Admin Powerhouse:** Full CRUD capabilities for products, users, and order management.
-* **💳 Seamless Checkout:** Integrated shipping and payment flow.
-* **📱 Fully Responsive:** Optimized for mobile, tablet, and desktop using Tailwind CSS.
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-black?style=flat&logo=vercel)](https://vercel.com/)
 
 ---
 
-## 📸 Project Showcases
+## 👤 Author
 
-### 🏠 Landing Page & Product Overview
+**Chanaka Ekanayaka**
+* **Live Link:** [E-SHOP](https://online-shopping-frontend-mern.vercel.app/)
+* **GitHub:** [@chanakaekanayaka](https://github.com/chanakaekanayaka)
+
+---
+
+## 📸 Project Gallery
+
+### 🏠 Customer Experience
 The gateway to premium sports gear, featuring modern layouts and high-performance tools.
 <p align="center">
-  <img src="public/home.png" width="45%" alt="Home Page" />
-  <img src="public/productoverview.png" width="45%" alt="Product Overview" />
+  <img src="public/home.png" width="48%" alt="Home Page" />
+  <img src="public/productoverview.png" width="48%" alt="Product Overview" />
 </p>
 
-### 🔑 Authentication & Admin Portal
-Secure login flows and a powerful management system for site administrators.
-<p align="center">
-  <img src="public/login.png" width="45%" alt="Login" />
-  <img src="public/admin.png" width="45%" alt="Admin Panel" />
-</p>
-
-### 🛍️ Shopping Experience
+### 🛒 Checkout & Orders
 A streamlined path from cart selection to secure order placement.
 <p align="center">
-  <img src="public/cart.png" width="30%" alt="Cart" />
-  <img src="public/checkout.png" width="30%" alt="Checkout" />
-  <img src="public/order.png" width="30%" alt="Order Success" />
+  <img src="public/cart.png" width="31%" alt="Cart" />
+  <img src="public/checkout.png" width="31%" alt="Checkout" />
+  <img src="public/order.png" width="31%" alt="Order Success" />
 </p>
 
-### 👤 User Dashboard
-A personalized space for users to track history and manage their account.
+### 🛠️ Admin & Management
+Powerful management system for site administrators to handle inventory and users.
 <p align="center">
-  <img src="public/dashboard.png" width="92%" alt="Dashboard" />
+  <img src="public/admin.png" width="48%" alt="Admin Panel" />
+  <img src="public/dashboard.png" width="48%" alt="User Dashboard" />
 </p>
+
+---
+
+## ✨ Features
+
+* **🔐 Advanced Authentication:** * Secure **Google Login** integration.
+    * Traditional Email/Password with **Password Reset** functionality.
+    * **OTP Verification** for enhanced account security.
+* **🛒 Shopping Flow:** Real-time cart management and multi-step checkout.
+* **🖼️ Cloud Storage:** Product and profile images are stored securely via **Firebase Storage**.
+* **📊 Admin Powerhouse:** Full CRUD (Create, Read, Update, Delete) for products and order tracking.
+* **📱 Responsive Design:** Modern, sleek UI built with **Tailwind CSS** for all device sizes.
+* **🚀 Performance:** Fast API interactions using **Node.js** and **Express**.
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-* **React.js** (Functional Components, Hooks)
-* **Redux Toolkit** (State Management)
-* **Tailwind CSS** (Modern Styling)
-* **Lucide React** (Iconography)
-* **React Router Dom** (Navigation)
+* **React.js:** Component-based UI (Hooks & Context API).
+* **Tailwind CSS:** Modern, utility-first styling.
+* **Firebase:** Google Auth & Cloud Image Storage.
+* **Axios:** Efficient API communication.
 
 ### Backend
-* **Node.js & Express** (Server-side logic)
-* **MongoDB** (Database)
-* **Cloudinary** (Image Hosting)
-* **JWT** (Security)
+* **Node.js & Express.js:** Scalable server-side logic and RESTful APIs.
+* **MongoDB:** NoSQL database for flexible data storage (Users, Products, Orders).
+* **Nodemailer:** OTP and Password Reset email delivery.
+* **JWT:** Secure token-based session handling.
+
+---
+
+## 🏗️ Architecture
+
+
+
+The application follows a decoupled architecture:
+1.  **Frontend:** A React SPA that handles the view layer and interacts with Firebase for authentication and media.
+2.  **Backend:** An Express server that processes business logic, interacts with the MongoDB database, and handles security protocols.
+3.  **Security:** State is managed via React Context/Local State (No Redux) for a lightweight and efficient user experience.
 
 ---
 
 ## 🚀 Getting Started
 
-To run this project locally, follow these steps:
+### Prerequisites
+* Node.js (v18+)
+* MongoDB Atlas Account
+* Firebase Project (Authentication & Storage enabled)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git](https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git)
-    ```
+### Installation
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Setup Environment Variables:**
-    Create a `.env` file in the root directory and add your credentials:
-    ```env
-    VITE_BACKEND_URL=your_backend_url
-    ```
-
-4.  **Start the development server:**
-    ```bash
-    npm run dev
-    ```
-
----
-
-## 🤝 Contribution
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
-
-**Built with ❤️ by [Chanaka Ekanayaka](https://github.com/chanakaekanayaka)**
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git](https://github.com/chanakaekanayaka/online-shopping-frontend-mern.git)
+   cd online-shopping-frontend-mern
